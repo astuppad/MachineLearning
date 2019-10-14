@@ -117,4 +117,37 @@ dafa3.join(dafa4, how = 'inner')
 dafa3.join(dafa4, how = 'left')
 dafa3.join(dafa4, how = 'right')
 
-    
+dataframe = pd.DataFrame({'CustID' : [1, 2, 3, 4],
+                           'SaleType' : ['big', np.nan, 'medium', 'big'],
+                           'SalesCode' : ['121', '131', '141', '151']})
+
+dataframe.head()
+dataframe.head(1) # Displays top 1st row
+dataframe['SaleType'].value_counts() 
+newdataframe = dataframe[(dataframe['CustID'] != 3) & (dataframe['SaleType'] == 'big')]
+newdataframe
+
+# Applying custome function to your dataframe
+def profit(a):
+    return a * 4
+
+dataframe['CustID'].apply(profit) # applies custom fucntion to the dataframe rows
+dataframe['SaleType'].apply(len) # applies a inbuilt length function to the dataframe rows
+del dataframe['CustID'] # deleted perticular column form the dataframe
+dataframe 
+dataframe.columns
+dataframe.index # shows index starts from and stops if the index is an integer if it is cusomt data shows all the values
+dataframe.sort_values(by = 'SaleType', inplace = True)
+dataframe
+dataframe.isnull()
+dataframe.dropna()
+dataframe.fillna('Not null')
+
+# reading and writing files in pandas
+dataframe = pd.read_csv('pandas-train.csv')
+dataframe
+dataframe.to_csv('titanic.csv', index = False) # stores into csv file and index is ignored f set to false
+
+# reading and writing excel file
+dataframe = pd.read_excel('pandas-Consumer.xlsx', sheet_name = 'Data1')
+dataframe.to_excel('cosumer.xlsx', sheet_name = 'Book1')
